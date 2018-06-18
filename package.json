@@ -1,0 +1,45 @@
+{
+  "name": "s3m",
+  "version": "1.0.0",
+  "description": "Safe and Secure School Messenger Application",
+  "main": "index.js",
+  "scripts": {
+    "serve": "live-server public/",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env=production",
+    "dev-server": "webpack-dev-server",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod"
+  },
+  "author": "Keenan Humm",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "express": "^4.15.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "live-server": "^1.2.0",
+    "node-sass": "^4.5.3",
+    "normalize.css": "^7.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "validator": "^8.0.0",
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
+  }
+}
