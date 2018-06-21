@@ -31,12 +31,14 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.3.1",
+    "react-youtube": "^7.6.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "typeface-roboto": "0.0.54",
     "validator": "^8.0.0",
     "webpack": "^3.1.0",
-    "webpack-dev-server": "^2.5.1"
+    "webpack-dev-server": "^2.5.1",
+    "youtube-api-search": "0.0.5"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
