@@ -7,7 +7,6 @@ const Header = (props) => {// eslint-disable-line
         {props.add && <Link to="/">Back</Link>}
       </div>
       <div>
-        {/* <img src="../images/vizidri.png" alt="Logo"/> */}
         vidiverse
       </div>
       <div className="add-link">
