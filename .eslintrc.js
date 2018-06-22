@@ -1,5 +1,5 @@
 module.exports = {
-  extends: "airbnb-base",
+  extends: ["airbnb-base"],
   rules: {
     "comma-dangle": 0,
     "no-unused-vars": [

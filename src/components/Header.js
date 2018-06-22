@@ -2,16 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {// eslint-disable-line
-  return (
-    <div className="header">
-      <div className="header__back">{props.add && <Link to='/'>Back</Link>}</div>
-      <div className="header__title">
-        {/* <img src="../images/vizidri.png" alt="Logo"/> */}
-        vizidri
+  return <div className="header">
+      <div className="back-link">
+        {props.add && <Link to="/">Back</Link>}
       </div>
-      <div className="header__add">{!props.add && <Link to='/add'>+</Link>}</div>
-    </div>
-  );
+      <div>
+        {/* <img src="../images/vizidri.png" alt="Logo"/> */}
+        vidiverse
+      </div>
+      <div className="add-link">
+        {!props.add && <Link to="/add">Add</Link>}
+      </div>
+    </div>;
 };
 
 export default Header;

@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import 'typeface-roboto';
 import React from 'react';
+import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
@@ -34,14 +35,15 @@ class App extends React.Component {
   }
   addPost(result) {
     this.setState(prevState => ({
-      posts: [...prevState.posts, result]
+      posts: [result, ...prevState.posts]
     }));
   }
   render() {
+    const slowSearch = _.debounce((term) => { this.searchYT(term) }, 300);// eslint-disable-line
     return <BrowserRouter>
         <Switch>
           <Route exact path="/" render={props => <Feed {...props} posts={this.state.posts} />} />
-          <Route path="/add" render={props => <Add {...props} posts={this.state.posts} results={this.state.results} searchYT={this.searchYT} addPost={this.addPost} />} />
+          <Route path="/add" render={props => <Add {...props} posts={this.state.posts} results={this.state.results} searchYT={slowSearch} addPost={this.addPost} />} />
           <Route path="*" render={props => <Feed {...props} posts={this.state.posts} />} />
         </Switch>
       </BrowserRouter>;

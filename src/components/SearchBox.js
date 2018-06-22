@@ -8,6 +8,7 @@ export default (props) => {// eslint-disable-line
         onChange={props.onSearchChange}
         value={props.searchText}
         placeholder={'Search YouTube'}
+        maxLength={20}
       />
     </div>
   );

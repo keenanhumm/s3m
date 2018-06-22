@@ -6,7 +6,7 @@ export default (props) => { // eslint-disable-line
     return <div></div>;
   }
   return (
-    <React.Fragment>
+    <div className="results">
       {
         props.results.map(result => <SearchResult
           key={result.etag}
@@ -15,6 +15,6 @@ export default (props) => { // eslint-disable-line
           posts={props.posts}
           />)
       }
-    </React.Fragment>
+    </div>
   );
 };

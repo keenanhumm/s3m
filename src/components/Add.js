@@ -7,9 +7,7 @@ class Add extends React.Component {
   constructor(props) {
     super(props);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.state = {
-      searchText: ''
-    };
+    this.state = { searchText: '' };
   }
   onSearchChange(e) {
     this.setState({
@@ -19,25 +17,24 @@ class Add extends React.Component {
   }
   render() {
     return (
-      <div className="add">
-        <div className="add__header">
+      <div className="container">
+        <div>
           <Header add={true} />
         </div>
-        <div className="add__search-box">
+        <div>
           <SearchBox
           searchText={this.state.searchText}
           posts={this.props.posts}
           onSearchChange={this.onSearchChange}
           />
         </div>
-        <div className="add__results">
+        <div>
           <SearchResults
           posts={this.props.posts}
           results={this.props.results}
           addPost={this.props.addPost}
           />
         </div>
-        
       </div>
     );
   }

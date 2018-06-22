@@ -2,12 +2,12 @@ import React from 'react';
 import Post from './Post';
 
 export default (props) => {
-  if (props.posts) {
+  if (props.posts.length > 0) {
     return (
-      <React.Fragment>
+      <div className="feed">
         {props.posts.map(post => <Post key={post.etag} post={post} />)}
-      </React.Fragment>
+      </div>
     );
   }
-  return <div></div>;
+  return <div className="feed">No posts yet.</div>;
 };
