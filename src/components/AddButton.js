@@ -5,13 +5,13 @@ export default (props) => {
   if (isPosted !== undefined) {
     return (
       <div className="add">
-        <div className="added">Added</div>
+        <div className="added">Posted</div>
       </div>
     );
   }
   return <div className="add">
       <div>
-        <button onClick={() => props.addPost(props.result)}>Add</button>
+        <button onClick={() => props.addPost(props.result)}>Post</button>
       </div>
     </div>;
 };

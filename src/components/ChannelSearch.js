@@ -5,10 +5,12 @@ export default (props) => {// eslint-disable-line
     <div>
       <input
         type="text"
-        onChange={props.onSearchChange}
+        placeholder="What interests you..."
+        onChange={(event) => {
+          event.preventDefault();
+          props.onChannelSearchChange(event.target.value);
+        }}
         value={props.searchText}
-        placeholder={'Search YouTube'}
-        maxLength={30}
       />
     </div>
   );

@@ -27,6 +27,7 @@
     "file-loader": "^1.1.11",
     "live-server": "^1.2.0",
     "lodash": "^4.17.10",
+    "materialize-css": "^1.0.0-rc.1",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
     "react": "^16.0.0",

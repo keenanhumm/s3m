@@ -12,14 +12,15 @@ class Add extends React.Component {
   onSearchChange(e) {
     this.setState({
       searchText: e.target.value
+    }, () => {
+      this.props.searchYT(this.state.searchText);
     });
-    this.props.searchYT(this.state.searchText);
   }
   render() {
     return (
       <div className="container">
         <div>
-          <Header add={true} />
+          <Header status='add' />
         </div>
         <div>
           <SearchBox
