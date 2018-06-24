@@ -6,6 +6,7 @@ const Header = (props) => {// eslint-disable-line
       <div className="back-link">
         {props.status === 'add' && <Link to="/feed">Feed</Link>}
         {props.status === 'feed' && <Link to="/">Channels</Link>}
+        {props.status === 'pin' && <Link to="/">Cancel</Link>}
       </div>
       <div>
         vidiverse

@@ -4,11 +4,13 @@ import React from 'react';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import uuid from 'uuid';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import Home from './components/Home';
 import Feed from './components/Feed';
 import Add from './components/Add';
+import channels from './dummy/channels';
 
 import './styles/styles.scss';
 
@@ -20,16 +22,20 @@ class App extends React.Component {
     this.searchYT = this.searchYT.bind(this);
     this.addPost = this.addPost.bind(this);
     this.joinChannel = this.joinChannel.bind(this);
+    this.createChannel = this.createChannel.bind(this);
     this.state = {
-      posts: [],
       results: [],
-      channels: [
-        { id: 1, name: 'the_fam' },
-        { id: 2, name: 'hooperz_only' },
-        { id: 3, name: 'hb4l' }
-      ],
+      channels,
       currentChannel: {}
     };
+  }
+  createChannel(name) {
+    const newChannel = { id: uuid(), name, posts: [] };
+    this.setState(prevState => ({
+      channels: [...prevState.channels, newChannel]
+    }), () => {
+      this.joinChannel(newChannel);
+    });
   }
   searchYT(text) {
     YTSearch(
@@ -51,7 +57,10 @@ class App extends React.Component {
   }
   addPost(result) {
     this.setState(prevState => ({
-      posts: [result, ...prevState.posts]
+      currentChannel: {
+        ...prevState.currentChannel,
+        posts: [result, ...prevState.currentChannel.posts]
+      }
     }));
   }
   render() {
@@ -60,10 +69,10 @@ class App extends React.Component {
     }, 300); // eslint-disable-line
     return <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={props => <Home {...props} posts={this.state.posts} channels={this.state.channels} joinChannel={this.joinChannel} />} />
-          <Route path="/feed" render={props => <Feed {...props} posts={this.state.posts} currentChannel={this.state.currentChannel} />} />
-          <Route path="/add" render={props => <Add {...props} posts={this.state.posts} results={this.state.results} searchYT={slowSearch} addPost={this.addPost} />} />
-          <Route path="*" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} />} />
+          <Route exact path="/" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} createChannel={this.createChannel} />} />
+          <Route path="/feed" render={props => <Feed {...props} channels={this.state.channels} currentChannel={this.state.currentChannel} />} />
+        <Route path="/add" render={props => <Add {...props} channels={this.state.channels} currentChannel={this.state.currentChannel} results={this.state.results} searchYT={slowSearch} addPost={this.addPost} />} />
+          <Route path="*" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} createChannel={this.createChannel} />} />
         </Switch>
       </BrowserRouter>;
   }

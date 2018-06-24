@@ -7,14 +7,14 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.onChannelSearchChange = this.onChannelSearchChange.bind(this);
-    this.goToChannel = this.goToChannel.bind(this);
+    this.goToFeed = this.goToFeed.bind(this);
     this.state = {
       channelResults: [],
       searchText: ''
     };
   }
 
-  goToChannel() {
+  goToFeed() {
     this.props.history.push('/feed');
   }
 
@@ -33,8 +33,11 @@ export default class Home extends Component {
     }
   }
   onChannelSearchChange(text) {
+    const noSpaces = text.replace(/ /g, '');
+    const noAngLeft = noSpaces.replace(/</g, '');
+    const noAngRight = noAngLeft.replace(/>/g, '');
     this.setState(() => ({
-      searchText: text
+      searchText: noAngRight
     }), () => {
       this.filterChannels();
     });
@@ -44,14 +47,17 @@ export default class Home extends Component {
         <Header status='home' />
         <ChannelSearch
           searchText={this.state.searchText}
+          channelResults={this.state.channelResults}
           channels={this.props.channels}
           onChannelSearchChange={this.onChannelSearchChange}
+          createChannel={this.props.createChannel}
+          goToFeed={this.goToFeed}
         />
         <ChannelResults
           channelResults={this.state.channelResults}
           searchText={this.state.searchText}
           joinChannel={this.props.joinChannel}
-          goToChannel={this.goToChannel}
+          goToFeed={this.goToFeed}
         />
       </div>;
   }

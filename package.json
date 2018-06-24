@@ -37,6 +37,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "typeface-roboto": "0.0.54",
+    "uuid": "^3.2.1",
     "validator": "^8.0.0",
     "webpack": "^3.1.0",
     "webpack-dev-server": "^2.5.1",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",

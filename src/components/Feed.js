@@ -13,7 +13,7 @@ export default (props) => {// eslint-disable-line
         <CurrentChannel currentChannel={props.currentChannel} />
       </div>
       <div>
-        <Posts posts={props.posts} />
+        <Posts posts={props.currentChannel.posts} />
       </div>
     </div>
   );

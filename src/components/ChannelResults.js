@@ -13,7 +13,7 @@ export default (props) => {
           key={channel.id}
           channel={channel}
           joinChannel={props.joinChannel}
-          goToChannel={props.goToChannel}
+          goToFeed={props.goToFeed}
         />
       ))}
     </div>

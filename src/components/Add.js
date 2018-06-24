@@ -24,16 +24,16 @@ class Add extends React.Component {
         </div>
         <div>
           <SearchBox
-          searchText={this.state.searchText}
-          posts={this.props.posts}
-          onSearchChange={this.onSearchChange}
+            searchText={this.state.searchText}
+            posts={this.props.currentChannel.posts}
+            onSearchChange={this.onSearchChange}
           />
         </div>
         <div>
           <SearchResults
-          posts={this.props.posts}
-          results={this.props.results}
-          addPost={this.props.addPost}
+            posts={this.props.currentChannel.posts}
+            results={this.props.results}
+            addPost={this.props.addPost}
           />
         </div>
       </div>
