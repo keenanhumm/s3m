@@ -6,6 +6,9 @@ import Header from './Header';
 class Add extends React.Component {
   constructor(props) {
     super(props);
+    if (this.props.currentChannel.posts === undefined) {
+      this.props.history.push('/');
+    }
     this.onSearchChange = this.onSearchChange.bind(this);
     this.state = { searchText: '' };
   }
@@ -17,6 +20,9 @@ class Add extends React.Component {
     });
   }
   render() {
+    if (this.props.currentChannel.posts === undefined) {
+      return <div>Loading...</div>;
+    }
     return (
       <div className="container">
         <div>

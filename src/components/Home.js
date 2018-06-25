@@ -14,7 +14,7 @@ export default class Home extends Component {
     };
   }
 
-  goToFeed() {
+  goToFeed(channel) {
     this.props.history.push('/feed');
   }
 

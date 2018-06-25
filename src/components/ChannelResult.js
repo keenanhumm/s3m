@@ -5,7 +5,7 @@ export default (props) => {
   const onRequestJoin = (event) => {
     event.preventDefault();
     props.joinChannel(props.channel);
-    props.goToFeed();
+    props.goToFeed(props.channel.id);
   };
 
   return (
