@@ -3,8 +3,6 @@ import 'typeface-roboto';
 import React from 'react';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
 import YTSearch from 'youtube-api-search';
 import uuid from 'uuid';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
@@ -17,9 +15,6 @@ import channels from './dummy/channels';
 import './styles/styles.scss';
 
 const API_KEY = 'AIzaSyC1fvi2fBD8cbk1kLXeM45Lk_ppVxclv-w';
-const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql'
-});
 
 class App extends React.Component {
   constructor(props) {
@@ -74,8 +69,8 @@ class App extends React.Component {
   }
   addPost(result) {
     const post = {
-      etag: result.etag,
-      id: result.id.videoId,
+      id: uuid(),
+      videoId: result.id.videoId,
       title: result.snippet.title
     };
     this.setState(prevState => ({
@@ -90,59 +85,57 @@ class App extends React.Component {
       this.searchYT(term);
     }, 300); // eslint-disable-line
     return (
-      <ApolloProvider client={client}>
-        <BrowserRouter>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Home
-                  {...props}
-                  channels={this.state.channels}
-                  joinChannel={this.joinChannel}
-                  createChannel={this.createChannel}
-                />
-              )}
-            />
-            <Route
-              path="/feed"
-              render={props => (
-                <Feed
-                  {...props}
-                  channels={this.state.channels}
-                  currentChannel={this.state.currentChannel}
-                  vw={this.state.vw}
-                />
-              )}
-            />
-            <Route
-              path="/add"
-              render={props => (
-                <Add
-                  {...props}
-                  channels={this.state.channels}
-                  currentChannel={this.state.currentChannel}
-                  results={this.state.results}
-                  searchYT={slowSearch}
-                  addPost={this.addPost}
-                />
-              )}
-            />
-            <Route
-              path="*"
-              render={props => (
-                <Home
-                  {...props}
-                  channels={this.state.channels}
-                  joinChannel={this.joinChannel}
-                  createChannel={this.createChannel}
-                />
-              )}
-            />
-          </Switch>
-        </BrowserRouter>
-      </ApolloProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Home
+                {...props}
+                channels={this.state.channels}
+                joinChannel={this.joinChannel}
+                createChannel={this.createChannel}
+              />
+            )}
+          />
+          <Route
+            path="/feed"
+            render={props => (
+              <Feed
+                {...props}
+                channels={this.state.channels}
+                currentChannel={this.state.currentChannel}
+                vw={this.state.vw}
+              />
+            )}
+          />
+          <Route
+            path="/add"
+            render={props => (
+              <Add
+                {...props}
+                channels={this.state.channels}
+                currentChannel={this.state.currentChannel}
+                results={this.state.results}
+                searchYT={slowSearch}
+                addPost={this.addPost}
+              />
+            )}
+          />
+          <Route
+            path="*"
+            render={props => (
+              <Home
+                {...props}
+                channels={this.state.channels}
+                joinChannel={this.joinChannel}
+                createChannel={this.createChannel}
+              />
+            )}
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

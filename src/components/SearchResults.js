@@ -9,10 +9,10 @@ export default (props) => { // eslint-disable-line
     <div className="results">
       {
         props.results.map(result => <SearchResult
-          key={result.etag}
-          result={result}
-          addPost={props.addPost}
-          posts={props.posts}
+            key={result.etag}
+            result={result}
+            addPost={props.addPost}
+            posts={props.posts}
           />)
       }
     </div>

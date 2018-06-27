@@ -5,7 +5,7 @@ export default (props) => {
   if (props.posts.length > 0) {
     return (
       <div className="feed">
-        {props.posts.map(post => <Post key={post.etag} post={post} vw={props.vw} />)}
+        {props.posts.map(post => <Post key={post.id} post={post} vw={props.vw} />)}
       </div>
     );
   }

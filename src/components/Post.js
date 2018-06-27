@@ -29,7 +29,7 @@ export default (props) => {
     <div>
       <div className="vid">
         <YouTube
-          videoId={props.post.id}
+          videoId={props.post.videoId}
           onReady={this.onReady}
           opts={opts}
         />

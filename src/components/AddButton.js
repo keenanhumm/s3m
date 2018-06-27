@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default (props) => {
-  const isPosted = props.posts.find(post => post.etag === props.result.etag);
+  const isPosted = props.posts.find(post => post.videoId === props.result.id.videoId);
   if (isPosted !== undefined) {
     return (
       <div className="add">
