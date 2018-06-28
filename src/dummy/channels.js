@@ -2,7 +2,7 @@ import uuid from 'uuid';
 
 export default [
   {
-    id: uuid(),
+    id: 'e9e8e196-8bff-43d7-8a12-eef4ec391d9a',
     name: 'the_fam',
     posts: [
       {

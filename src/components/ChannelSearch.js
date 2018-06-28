@@ -3,8 +3,7 @@ import React from 'react';
 export default (props) => {// eslint-disable-line
   const createChannel = (event) => {
     event.preventDefault();
-    props.createChannel(props.searchText);
-    props.goToFeed();
+    console.log('channel created');
   };
 
   return (

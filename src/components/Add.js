@@ -2,15 +2,16 @@ import React from 'react';
 import SearchBox from './SearchBox';
 import SearchResults from './SearchResults';
 import Header from './Header';
+import channels from '../dummy/channels';
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.currentChannel.posts === undefined) {
-      this.props.history.push('/');
-    }
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.state = { searchText: '' };
+    this.state = {
+      channel: channels.find(channel => channel.id === this.props.match.params.channelId),
+      searchText: ''
+    };
   }
   onSearchChange(e) {
     this.setState({
@@ -20,24 +21,24 @@ class Add extends React.Component {
     });
   }
   render() {
-    if (this.props.currentChannel.posts === undefined) {
+    if (this.state.channel === undefined) {
       return <div>Loading...</div>;
     }
     return (
       <div className="container">
         <div>
-          <Header status='add' />
+          <Header status='add' channelId={this.state.channel.id} />
         </div>
         <div>
           <SearchBox
             searchText={this.state.searchText}
-            posts={this.props.currentChannel.posts}
+            posts={this.state.channel.posts}
             onSearchChange={this.onSearchChange}
           />
         </div>
         <div>
           <SearchResults
-            posts={this.props.currentChannel.posts}
+            posts={this.state.channel.posts}
             results={this.props.results}
             addPost={this.props.addPost}
           />

@@ -4,8 +4,7 @@ export default (props) => {
   // eslint-disable-line
   const onRequestJoin = (event) => {
     event.preventDefault();
-    props.joinChannel(props.channel);
-    props.goToFeed(props.channel.id);
+    props.goToFeed(props.channel);
   };
 
   return (
