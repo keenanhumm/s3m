@@ -50,7 +50,7 @@ export default class Home extends Component {
           channelResults={this.state.channelResults}
           channels={this.props.channels}
           onChannelSearchChange={this.onChannelSearchChange}
-          createChannel={this.props.createChannel}
+          handleCreateChannel={this.props.handleCreateChannel}
           goToFeed={this.goToFeed}
         />
         <ChannelResults

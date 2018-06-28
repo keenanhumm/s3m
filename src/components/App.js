@@ -10,7 +10,7 @@ import 'normalize.css/normalize.css';
 import Home from './Home';
 import Feed from './Feed';
 import Add from './Add';
-import channels from '../dummy/channels';
+import { getChannels, createChannel } from '../requests';
 import '../styles/styles.scss';
 
 const API_KEY = 'AIzaSyC1fvi2fBD8cbk1kLXeM45Lk_ppVxclv-w';
@@ -27,24 +27,25 @@ export default class App extends React.Component {
       window.innerHeight || 0 // eslint-disable-line
     );
     this.searchYT = this.searchYT.bind(this);
-    this.addPost = this.addPost.bind(this);
-    this.createChannel = this.createChannel.bind(this);
+    this.handleCreateChannel = this.handleCreateChannel.bind(this);
     this.state = {
       results: [],
-      channels,
+      channels: [],
       vw: w
     };
   }
-  createChannel(name) {
-    const newChannel = { id: uuid(), name, posts: [] };
-    this.setState(
-      prevState => ({
-        channels: [...prevState.channels, newChannel]
-      }),
-      () => {
-        this.joinChannel(newChannel);
-      }
-    );
+
+  async componentDidMount() {
+    const channels = await getChannels();
+    this.setState({ channels });
+  }
+
+  async handleCreateChannel(name) {
+    createChannel({
+      name
+    }).then((channel) => {
+      this.router.history.push(`/${channel.id}`);
+    });
   }
   searchYT(text) {
     YTSearch(
@@ -59,29 +60,22 @@ export default class App extends React.Component {
       }
     );
   }
-  addPost(result) {
-    const post = {
-      id: uuid(),
-      videoId: result.id.videoId,
-      title: result.snippet.title
-    };
-    this.setState(prevState => ({
-      currentChannel: {
-        ...prevState.currentChannel,
-        posts: [post, ...prevState.currentChannel.posts]
-      }
-    }));
-  }
   render() {
+    const { channels } = this.state;
+    if (!channels) {
+      return <div>Loading...</div>;
+    }
     const slowSearch = _.debounce((term) => {
       this.searchYT(term);
     }, 300); // eslint-disable-line
-    return <BrowserRouter ref={(router) => { this.router = router; }}>
+    return <BrowserRouter ref={(router) => {
+          this.router = router;
+        }}>
         <Switch>
-          <Route exact path="/" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} createChannel={this.createChannel} />} />
-          <Route exact path="/:channelId" render={props => <Feed {...props} channels={this.state.channels} currentChannel={this.state.currentChannel} vw={this.state.vw} />} />
+          <Route exact path="/" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} handleCreateChannel={this.handleCreateChannel} />} />
+          <Route exact path="/:channelId" render={props => <Feed {...props} vw={this.state.vw} />} />
           <Route path="/:channelId/add" render={props => <Add {...props} channels={this.state.channels} currentChannel={this.state.currentChannel} results={this.state.results} searchYT={slowSearch} addPost={this.addPost} />} />
-          <Route path="*" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} createChannel={this.createChannel} />} />
+          <Route path="*" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} handleCreateChannel={this.handleCreateChannel} />} />
         </Switch>
       </BrowserRouter>;
   }

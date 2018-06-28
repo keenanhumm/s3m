@@ -7,8 +7,8 @@ type Query {
 }
 
 type Mutation {
-  createPost(input: CreatePostInput): Post
-  createChannel(input: CreateChannelInput): Channel
+  CreatePost(title: String!, videoId: String!, channelId: String!): Post
+  CreateChannel(name: String!): Channel
 }
 
 type Channel {
@@ -22,15 +22,5 @@ type Post {
   title: String
   videoId: String
   channel: Channel
-}
-
-input CreatePostInput {
-  title: String
-  videoId: String
-  channelId: ID
-}
-
-input CreateChannelInput {
-  name: String
 }
 `;

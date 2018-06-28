@@ -8,12 +8,12 @@ const Query = {
 };
 
 const Mutation = {
-  createPost: (root, { postInput }) => {
-    const id = db.posts.create({ postInput });
+  CreatePost: (root, input) => {
+    const id = db.posts.create(input);
     return db.posts.get(id);
   },
-  createChannel: (root, { channelInput }) => {
-    const id = db.channels.create({ ...channelInput, posts: [] });
+  CreateChannel: (root, input) => {
+    const id = db.channels.create({ ...input, posts: [] });
     return db.channels.get(id);
   }
 };

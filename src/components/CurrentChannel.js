@@ -1,10 +1,9 @@
 import React from 'react';
 
 export default (props) => {// eslint-disable-line
-  const currentChannel = `#${props.currentChannel.name}`;
-  return (
-    <div className="current-channel">
-      {currentChannel}
-    </div>
-  );
+  if (!props.channel) {
+    return null;
+  }
+  const channelName = `#${props.channel.name}`;
+  return <div className="current-channel">{channelName}</div>;
 };
