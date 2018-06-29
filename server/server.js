@@ -11,7 +11,6 @@ const typeDefs = require('./typeDefs');
 
 
 const port = process.env.PORT || 3000;
-console.log(port);
 
 const publicPath = path.join(__dirname, '../public');
 
