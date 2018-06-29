@@ -11,6 +11,9 @@ const publicPath = path.join(__dirname, './public');
 // app.get(`/.well-known/acme-challenge/${addressSSL}`, function(req, res) {
 //   res.send(key);
 // });
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.listen(port, () => {
   console.log(`server running at ${port}`);// eslint-disable-line
