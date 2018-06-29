@@ -1,10 +1,11 @@
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import gql from 'graphql-tag';
 
-const endpointURL = 'http://localhost:3000/graphql';
+const devEndpoint = 'http://localhost:3000/graphql';
+const prodEndpoint = 'https://vidiverse.herokuapp.com/graphql';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: endpointURL }),
+  link: new HttpLink({ uri: prodEndpoint }),
   cache: new InMemoryCache()
 });
 
