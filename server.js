@@ -1,3 +1,4 @@
+const express = require('express');
 const app = require('./server/server');
 const path = require('path');
 
@@ -10,9 +11,7 @@ const publicPath = path.join(__dirname, './public');
 // app.get(`/.well-known/acme-challenge/${addressSSL}`, function(req, res) {
 //   res.send(key);
 // });
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-});
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.listen(port, () => {
-  console.log(`server running at ${port}`);
+  console.log(`server running at ${port}`);// eslint-disable-line
 });
