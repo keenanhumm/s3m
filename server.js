@@ -20,6 +20,9 @@ app.get('/bundle.js', (req, res) => {
 app.get('/style.css', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/style.css'));
 });
+app.get('/images/icon.png', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/images/icon.png'));
+});
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.listen(port, () => {
   console.log(`server running at ${port}`);// eslint-disable-line
