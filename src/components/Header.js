@@ -8,14 +8,14 @@ const Header = (props) => {// eslint-disable-line
   }
   return <div className="header">
       <div className="back-link">
-      {props.status === 'add' && <Link to={`/${props.channelId}`}>Feed</Link>}
-        {props.status === 'feed' && <Link to="/">Channels</Link>}
+        {props.status === 'add' && <Link to={`/${props.channelId}`}>feed</Link>}
+        {props.status === 'feed' && <Link to="/">channels</Link>}
       </div>
       <div>
         vidiverse
       </div>
       <div className="add-link">
-      {props.status === 'feed' && <Link to={`/${props.channelId}/add`}>Post</Link>}
+        {props.status === 'feed' && <Link to={`/${props.channelId}/add`}>post</Link>}
       </div>
     </div>;
 };

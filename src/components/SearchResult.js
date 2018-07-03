@@ -4,7 +4,7 @@ import AddButton from './AddButton';
 
 export default props => {// eslint-disable-line
   return (
-    <div className="result">
+    <div className="result animated fadeIn">
       <div>
         <VideoPreview result={props.result} />
       </div>

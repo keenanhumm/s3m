@@ -8,7 +8,7 @@ export default (props) => {
   };
 
   return (
-    <div className="channel-result">
+    <div className="channel-result animated fadeIn">
       <div className="channel-name">#{props.channel.name}</div>
       <div className="channel-options">
         <button onClick={event => onRequestJoin(event)}>Join</button>
