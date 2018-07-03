@@ -1,9 +1,10 @@
-$primary-color: blue;
+$primary-color: rgb(231, 231, 231);
 $light-blue: rgb(122, 218, 250);
 $green: #0ab90a;
 $dark-grey: rgb(90, 90, 90);
 $light-grey: rgb(170, 170, 170);
-$dark-red: rgb(99, 8, 8);
+$dark-red: rgb(226, 175, 175);
+$black: rgb(32, 32, 32);
 
 html {
   font-size: 62.5%;
@@ -11,6 +12,8 @@ html {
 body {
   font-family: 'Fjalla One', sans-serif;
   font-size: 3rem;
+  color: white;
+  background-color: $black;
 }
 button {
   cursor: pointer;
@@ -26,7 +29,7 @@ input {
   background: transparent;
   border: 0px;
   padding: 10px;
-  color: $dark-grey;
+  color: white;
   outline: none;
   width: 100%;
 }
@@ -95,7 +98,7 @@ input {
   .header {
     background-color: $primary-color;
     font-family: 'Fjalla One', sans-serif;
-    color: white;
+    color: $black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-content: center;
@@ -110,7 +113,7 @@ input {
     }
 
     a {
-      color: $light-blue;
+      color: $dark-grey;
       font-size: 2.5rem;
       text-decoration: none;
     }
