@@ -5,7 +5,7 @@ const devEndpoint = 'http://localhost:3000/graphql';
 const prodEndpoint = 'https://vidiverse.herokuapp.com/graphql';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: prodEndpoint }),
+  link: new HttpLink({ uri: devEndpoint }),
   cache: new InMemoryCache()
 });
 
@@ -34,6 +34,7 @@ export async function getChannel(id) {
           id
           title
           videoId
+          postedAt
         }
       }
     }
@@ -45,12 +46,15 @@ export async function getChannel(id) {
 }
 
 export async function createPost(input) {
+  const postedAt = Date.now().toString();
   const { title, videoId, channelId } = input;
   const mutation = gql`
-    mutation CreatePost($title: String!, $videoId: String!, $channelId: String!) {
-      post: CreatePost(title: $title, videoId: $videoId, channelId: $channelId) {
+    mutation CreatePost($title: String!, $videoId: String!, $channelId: String!, $postedAt: String!) {
+      post: CreatePost(title: $title, videoId: $videoId, channelId: $channelId, postedAt: $postedAt) {
         id
         title
+        videoId
+        postedAt
         channel {
           id 
           name
@@ -63,7 +67,8 @@ export async function createPost(input) {
     variables: {
       title,
       videoId,
-      channelId
+      channelId,
+      postedAt
     }
   });
   return post;
@@ -71,7 +76,7 @@ export async function createPost(input) {
 export async function createChannel(input) {
   const { name } = input;
   const mutation = gql`
-    mutation CreatePost($name: String!) {
+    mutation CreateChannel($name: String!) {
       channel: CreateChannel(name: $name) {
         id
         name

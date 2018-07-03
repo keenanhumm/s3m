@@ -2,6 +2,7 @@
 import 'typeface-roboto';
 import React from 'react';
 import _ from 'lodash';
+import moment from 'moment';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import uuid from 'uuid';
@@ -26,6 +27,7 @@ export default class App extends React.Component {
       document.documentElement.clientHeight, // eslint-disable-line
       window.innerHeight || 0 // eslint-disable-line
     );
+    const current = Date.now();
     this.searchYT = this.searchYT.bind(this);
     this.handleCreateChannel = this.handleCreateChannel.bind(this);
     this.state = {

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import YouTube from 'react-youtube';
 
@@ -25,16 +26,13 @@ export default (props) => {
       rel: 0
     }
   };
-  return (
-    <div>
+  return <div>
       <div className="vid">
-        <YouTube
-          videoId={props.post.videoId}
-          onReady={this.onReady}
-          opts={opts}
-        />
+        <YouTube videoId={props.post.videoId} onReady={this.onReady} opts={opts} />
       </div>
       <div className="vid-title">{props.post.title}</div>
-    </div>
-  );
+      <div className="vid-posted-at">
+        Posted {moment(Number(props.post.postedAt)).format('MMM Do @ h:ma')}
+      </div>
+    </div>;
 };

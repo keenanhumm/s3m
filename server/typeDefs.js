@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-  CreatePost(title: String!, videoId: String!, channelId: String!): Post
+  CreatePost(title: String!, videoId: String!, channelId: String!, postedAt: String!): Post
   CreateChannel(name: String!): Channel
 }
 
@@ -22,5 +22,6 @@ type Post {
   title: String
   videoId: String
   channel: Channel
+  postedAt: String
 }
 `;

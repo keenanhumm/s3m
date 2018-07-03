@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import moment from 'moment';
 import React from 'react';
 import Header from './Header';
 import Posts from './Posts';
@@ -14,8 +16,17 @@ export default class Feed extends React.Component {
 
   async componentDidMount() {
     const { channelId } = this.props.match.params;
-    const channel = await getChannel(channelId);
-    this.setState({ channel });
+    getChannel(channelId).then((channel) => {
+      this.setState({ channel }, () => {
+        const sortedPosts = _.orderBy(this.state.channel.posts, ['postedAt'], ['desc']);
+        this.setState({
+          channel: {
+            ...channel,
+            posts: sortedPosts
+          }
+        });
+      });
+    });
   }
 
   render() {

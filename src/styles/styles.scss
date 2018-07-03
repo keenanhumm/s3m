@@ -2,18 +2,19 @@ $primary-color: blue;
 $light-blue: rgb(122, 218, 250);
 $green: #0ab90a;
 $dark-grey: rgb(90, 90, 90);
+$light-grey: rgb(170, 170, 170);
 $dark-red: rgb(99, 8, 8);
 
 html {
   font-size: 62.5%;
 }
 body {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Fjalla One', sans-serif;
   font-size: 3rem;
 }
 button {
   cursor: pointer;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Fjalla One', sans-serif;
 }
 button:focus {
   outline: 0;
@@ -21,7 +22,7 @@ button:focus {
 input {
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Fjalla One', sans-serif;
   background: transparent;
   border: 0px;
   padding: 10px;
@@ -93,6 +94,7 @@ input {
   }
   .header {
     background-color: $primary-color;
+    font-family: 'Fjalla One', sans-serif;
     color: white;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -119,11 +121,15 @@ input {
   .feed {
     display: grid;
     grid-template-columns: 1fr;
-    grid-row-gap: 2rem;
+    grid-row-gap: 8rem;
     margin: 10px 10px 0px 10px;
     .video480 {
       width: 480px;
       height: 385px;
+    }
+    .vid-posted-at{
+      color: $light-grey;
+      font-size: 20px;
     }
   }
   .results {
