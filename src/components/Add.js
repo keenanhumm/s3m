@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBox from './SearchBox';
 import SearchResults from './SearchResults';
 import Header from './Header';
+import CurrentChannel from './CurrentChannel';
 import { getChannel, createPost } from '../requests';
 
 class Add extends React.Component {
@@ -43,13 +44,16 @@ class Add extends React.Component {
   }
   render() {
     const { channel, searchText } = this.state;
-    if (!channel) {
-      return <div>Loading...</div>;
+    if (!channel || !channel.name) {
+      return <div className="loading">Loading...</div>;
     }
     return (
       <div className="container">
         <div>
-          <Header status="add" channelId={channel.id} />
+          <Header status="add" channel={channel} />
+        </div>
+        <div>
+          <CurrentChannel channel={channel} />
         </div>
         <div>
           <SearchBox

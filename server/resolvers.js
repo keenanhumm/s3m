@@ -13,7 +13,7 @@ const Mutation = {
     return db.posts.get(id);
   },
   CreateChannel: (root, input) => {
-    const id = db.channels.create({ ...input, posts: [] });
+    const id = db.channels.create(input);
     return db.channels.get(id);
   }
 };

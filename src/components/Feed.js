@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import moment from 'moment';
 import React from 'react';
 import Header from './Header';
 import Posts from './Posts';
@@ -31,8 +30,8 @@ export default class Feed extends React.Component {
 
   render() {
     const { channel } = this.state;
-    if (!channel) {
-      return <div>Loading...</div>;
+    if (!channel || !channel.name || !channel.posts) {
+      return <div className="loading">Loading...</div>;
     }
     return <div className="container">
         <div>

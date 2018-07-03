@@ -5,5 +5,5 @@ export default (props) => {// eslint-disable-line
     return null;
   }
   const channelName = `#${props.channel.name}`;
-  return <div className="current-channel">{channelName}</div>;
+  return <div className="current-channel animated pulse">{channelName}</div>;
 };
