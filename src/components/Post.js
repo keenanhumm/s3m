@@ -32,7 +32,7 @@ export default (props) => {
       </div>
       <div className="vid-title">{props.post.title}</div>
       <div className="vid-posted-at">
-        Posted {moment(Number(props.post.postedAt)).format('MMM Do @ h:ma')}
+        Posted {moment(Number(props.post.postedAt)).format('MMM Do @ h:mma')}
       </div>
     </div>;
 };
