@@ -5,7 +5,7 @@ const devEndpoint = 'http://localhost:3000/graphql';
 const prodEndpoint = 'https://vidiverse.herokuapp.com/graphql';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: devEndpoint }),
+  link: new HttpLink({ uri: prodEndpoint }),
   cache: new InMemoryCache()
 });
 
