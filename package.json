@@ -9,6 +9,7 @@
     "build:prod": "webpack -p --env=production",
     "dev-server": "webpack-dev-server",
     "start": "node server.js",
+    "test": "mocha ",
     "server-watch": "nodemon --ignore server/collections/ server.js",
     "heroku-postbuild": "npm run build:prod"
   },
@@ -36,7 +37,9 @@
     "graphql-tools": "^3.0.4",
     "live-server": "^1.2.0",
     "lodash": "^4.17.10",
+    "mocha": "^5.2.0",
     "moment": "^2.22.2",
+    "mongoose": "^5.2.1",
     "node-sass": "^4.5.3",
     "nodemon": "^1.17.5",
     "normalize.css": "^7.0.0",

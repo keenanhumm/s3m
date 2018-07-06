@@ -1,6 +1,24 @@
 const express = require('express');
 const app = require('./server/server');
 const path = require('path');
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect(
+  'mongodb://keenanhumm:Strong4545@ds119161.mlab.com:19161/vidiverse',
+  { useNewUrlParser: true }
+);
+
+require('./models/index');
+
+mongoose.connection
+  .once('open', () => {
+    console.log('connection to mLab db successful!');// eslint-disable-line
+  })
+  .on('error', (error) => {
+    console.warn('Mongoose Error', error);// eslint-disable-line
+  });
 
 const port = process.env.PORT || 3000;
 

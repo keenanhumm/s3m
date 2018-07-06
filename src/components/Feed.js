@@ -31,11 +31,11 @@ export default class Feed extends React.Component {
   render() {
     const { channel } = this.state;
     if (!channel || !channel.name || !channel.posts) {
-      return <div className="loading">Loading...</div>;
+      return <div className="loading animated fadeIn">Loading...</div>;
     }
     return <div className="container">
         <div>
-          <Header status="feed" channelId={channel.id} />
+          <Header status="feed" channel={channel} />
         </div>
         <div>
           <CurrentChannel channel={channel} />

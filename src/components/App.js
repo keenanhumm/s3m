@@ -2,10 +2,8 @@
 import 'typeface-roboto';
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
-import uuid from 'uuid';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import Home from './Home';
@@ -45,7 +43,7 @@ export default class App extends React.Component {
     createChannel({
       name
     }).then((channel) => {
-      this.router.history.push(`/${channel.id}`);
+      this.router.history.push(`/${channel._id}`);// eslint-disable-line
     });
   }
   searchYT(text) {
@@ -68,7 +66,7 @@ export default class App extends React.Component {
     }
     const slowSearch = _.debounce((term) => {
       this.searchYT(term);
-    }, 300); // eslint-disable-line
+    }, 500); // eslint-disable-line
     return <BrowserRouter ref={(router) => {
           this.router = router;
         }}>

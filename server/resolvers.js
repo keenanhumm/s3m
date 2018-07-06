@@ -1,29 +1,24 @@
-const db = require('./db');
+const Channels = require('../models/channel');
+const Posts = require('../models/post');
 
 const Query = {
-  post: (root, { id }) => db.posts.get(id),
-  channel: (root, { id }) => db.channels.get(id),
-  channels: () => db.channels.list(),
-  posts: () => db.posts.list()
+  post: (root, { id }) => Posts.findById(id),
+  channel: (root, { id }) => Channels.findById(id),
+  channels: () => Channels.find({}),
+  posts: () => Posts.find({})
 };
 
 const Mutation = {
-  CreatePost: (root, input) => {
-    const id = db.posts.create(input);
-    return db.posts.get(id);
-  },
-  CreateChannel: (root, input) => {
-    const id = db.channels.create(input);
-    return db.channels.get(id);
-  }
+  CreatePost: (root, newPost) => Posts.create(newPost).then(id => Posts.findById(id)),
+  CreateChannel: (root, { name }) => Channels.create({ name }).then(id => Channels.findById(id))
 };
 
 const Post = {
-  channel: post => db.channels.get(post.channelId)
+  channel: post => Channels.findById(post.channelId)
 };
 
 const Channel = {
-  posts: channel => db.posts.list().filter(post => post.channelId === channel.id)
+  posts: channel => Posts.find({ channelId: channel.id.toString() })
 };
 
 module.exports = {

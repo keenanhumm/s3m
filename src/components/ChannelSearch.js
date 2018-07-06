@@ -7,7 +7,7 @@ export default (props) => {// eslint-disable-line
   };
 
   return (
-    <div className="channel-search">
+    <div className="channel-search animated fadeIn">
       <div className="channel-input">
         <input
           type="text"

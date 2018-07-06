@@ -20,9 +20,9 @@ class Add extends React.Component {
     createPost({
       title: result.snippet.title,
       videoId: result.id.videoId,
-      channelId: this.state.channel.id
+      channelId: this.state.channel._id // eslint-disable-line
     }).then((post) => {
-      this.props.history.push(`/${post.channel.id}`);
+      this.props.history.push(`/${post.channel._id}`);// eslint-disable-line
     });
   }
 
@@ -45,7 +45,7 @@ class Add extends React.Component {
   render() {
     const { channel, searchText } = this.state;
     if (!channel || !channel.name) {
-      return <div className="loading">Loading...</div>;
+      return <div className="loading animated fadeIn">Loading...</div>;
     }
     return (
       <div className="container">

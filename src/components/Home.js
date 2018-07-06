@@ -15,7 +15,7 @@ export default class Home extends Component {
   }
 
   goToFeed(channel) {
-    this.props.history.push(`/${channel.id}`);
+    this.props.history.push(`/${channel._id}`); // eslint-disable-line
   }
 
   filterChannels() {

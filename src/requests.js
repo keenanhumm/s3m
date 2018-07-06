@@ -13,7 +13,7 @@ export async function getChannels() {
   const query = gql`
     {
       channels {
-        id
+        _id
         name
       }
     }
@@ -26,12 +26,12 @@ export async function getChannels() {
 
 export async function getChannel(id) {
   const query = gql`
-    query ChannelQuery($id: ID!) {
+    query ChannelQuery($id: String!) {
       channel(id: $id) {
-        id
+        _id
         name
         posts {
-          id
+          _id
           title
           videoId
           postedAt
@@ -51,12 +51,12 @@ export async function createPost(input) {
   const mutation = gql`
     mutation CreatePost($title: String!, $videoId: String!, $channelId: String!, $postedAt: String!) {
       post: CreatePost(title: $title, videoId: $videoId, channelId: $channelId, postedAt: $postedAt) {
-        id
+        _id
         title
         videoId
         postedAt
         channel {
-          id 
+          _id 
           name
         }
       }
@@ -78,7 +78,7 @@ export async function createChannel(input) {
   const mutation = gql`
     mutation CreateChannel($name: String!) {
       channel: CreateChannel(name: $name) {
-        id
+        _id
         name
       }
     }

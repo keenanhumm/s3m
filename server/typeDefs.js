@@ -1,8 +1,8 @@
 module.exports = `
 type Query {
-  channel(id: ID!): Channel
+  channel(id: String!): Channel
   channels: [Channel]
-  post(id: ID!): Post
+  post(id: String!): Post
   posts: [Post]
 }
 
@@ -12,13 +12,13 @@ type Mutation {
 }
 
 type Channel {
-  id: ID!
+  _id: String
   name: String
   posts: [Post]
 }
 
 type Post {
-  id: ID!
+  _id: String
   title: String
   videoId: String
   channel: Channel

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (props) => {// eslint-disable-line
   return (
-    <div>
+    <div className="animated fadeIn">
       <input
         type="text"
         onChange={props.onSearchChange}
