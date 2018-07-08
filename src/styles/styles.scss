@@ -60,6 +60,10 @@ input {
       color: white;
       border-radius: 5px;
     }
+    .creating{
+      color: $light-grey;
+      font-size: $font-sm;
+    }
   }
 }
 .container {

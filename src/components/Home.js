@@ -13,7 +13,6 @@ export default class Home extends Component {
       searchText: ''
     };
   }
-
   goToFeed(channel) {
     this.props.history.push(`/${channel._id}`); // eslint-disable-line
   }
@@ -43,19 +42,19 @@ export default class Home extends Component {
     });
   }
   render() {
+    const { searchText, channelResults, creating } = this.state;
     return <div className="container">
         <Header status='home' />
         <ChannelSearch
-          searchText={this.state.searchText}
-          channelResults={this.state.channelResults}
+          searchText={searchText}
+          channelResults={channelResults}
           channels={this.props.channels}
           onChannelSearchChange={this.onChannelSearchChange}
           handleCreateChannel={this.props.handleCreateChannel}
-          goToFeed={this.goToFeed}
         />
         <ChannelResults
-          channelResults={this.state.channelResults}
-          searchText={this.state.searchText}
+          channelResults={ channelResults }
+          searchText={ searchText }
           joinChannel={this.props.joinChannel}
           goToFeed={this.goToFeed}
         />

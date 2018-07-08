@@ -1,30 +1,44 @@
 import React from 'react';
 
-export default (props) => {// eslint-disable-line
-  const createChannel = (event) => {
+export default class ChannelSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      creating: false
+    };
+  }
+  createChannel(event) {
     event.preventDefault();
-    props.handleCreateChannel(props.searchText);
-  };
-
-  return (
+    this.setState({
+      creating: true
+    });
+    this.props.handleCreateChannel(this.props.searchText);
+  }
+  render() {
+    return (
     <div className="channel-search animated fadeIn">
       <div className="channel-input">
         <input
           type="text"
           placeholder="Search Channels"
           onChange={(event) => {
-          event.preventDefault();
-          props.onChannelSearchChange(event.target.value);
+            event.preventDefault();
+            this.props.onChannelSearchChange(event.target.value);
           }}
-          value={props.searchText}
+          value={this.props.searchText}
           maxLength={16}
         />
       </div>
-      {!props.channelResults.length && props.searchText !== '' &&
+      {!this.props.channelResults.length && this.props.searchText !== '' &&
         <div className="create-channel">
-          <button onClick={ event => createChannel(event) }>Create</button>
+          {this.state.creating ?
+            <div className="animated fadeIn creating">Creating...</div>
+            :
+            <button onClick={event => this.createChannel(event)}>Create</button>
+          }
         </div>
       }
     </div>
-  );
-};
+    );
+  }
+}
