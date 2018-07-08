@@ -73,7 +73,7 @@ export default class App extends React.Component {
         <Switch>
           <Route exact path="/" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} handleCreateChannel={this.handleCreateChannel} />} />
           <Route exact path="/:channelId" render={props => <Feed {...props} vw={this.state.vw} />} />
-          <Route path="/:channelId/add" render={props => <Add {...props} channels={this.state.channels} currentChannel={this.state.currentChannel} results={this.state.results} searchYT={slowSearch} addPost={this.addPost} />} />
+          <Route path="/:channelId/add" render={props => <Add {...props} channels={this.state.channels} results={this.state.results} searchYT={slowSearch} addPost={this.addPost} />} />
           <Route path="*" render={props => <Home {...props} channels={this.state.channels} joinChannel={this.joinChannel} handleCreateChannel={this.handleCreateChannel} />} />
         </Switch>
       </BrowserRouter>;
